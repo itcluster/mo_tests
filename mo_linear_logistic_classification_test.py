@@ -15,19 +15,19 @@ print("_________________________________________________________________________
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(breast_cancer['data'],breast_cancer['target'],random_state=0)
 
-# initialization knn model and fit her
-from sklearn.neighbors import KNeighborsClassifier
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X_train,y_train)
+# initialization linear model and fit her, C - parameter L1-regularization or L2-...
+from sklearn.linear_model import LogisticRegression
+lr = LogisticRegression(C=100, penalty = 'l1')
+lr.fit(X_train,y_train)
 
 # prediction on train data and test data
-y_pred = knn.predict((X_train))
-print("Accuracy on train set: {:.2f}".format(np.mean(y_pred==y_train)))
-y_pred = knn.predict((X_test))
-print("Accuracy on test set: {:.2f}".format(np.mean(y_pred==y_test)))
+y_pred = lr.predict((X_train))
+print("Accuracy on train set: {:.3f}".format(np.mean(y_pred==y_train)))
+y_pred = lr.predict((X_test))
+print("Accuracy on train set: {:.3f}".format(np.mean(y_pred==y_test)))
 
 # prediction on train data and test data, accuracy evaluation how R^2
-y_pred = knn.predict((X_train))
-print("R^2 Accuracy on train set: {:.2f}".format(knn.score(X_train, y_train)))
-y_pred = knn.predict((X_test))
-print("R^2 Accuracy on test set: {:.2f}".format(knn.score(X_test, y_test)))
+y_pred = lr.predict((X_train))
+print("R^2 Accuracy on train set: {:.3f}".format(lr.score(X_train, y_train)))
+y_pred = lr.predict((X_test))
+print("R^2 Accuracy on test set: {:.3f}".format(lr.score(X_test, y_test)))

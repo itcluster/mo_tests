@@ -20,7 +20,7 @@ from sklearn.neighbors import KNeighborsClassifier
 knn = KNeighborsClassifier(n_neighbors=3)
 knn.fit(X_train,y_train)
 
-# prediction on train data and test data 
+# prediction on train data and test data  
 y_pred = knn.predict((X_train))
 print("Accuracy on train set: {:.2f}".format(np.mean(y_pred==y_train)))
 y_pred = knn.predict((X_test))
